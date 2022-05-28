@@ -16,6 +16,7 @@ import { SerializeInterceptor } from 'src/interceptors/serialize.interceptor';
 import { idText } from 'typescript';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { UserDto } from './dtos/user.dto';
 import { UsersService } from './users.service';
 
 @Controller('auth')
@@ -34,7 +35,7 @@ export class UsersController {
     return user;
   }
   @Get('/:id')
-  @UseInterceptors(SerializeInterceptor)
+  @UseInterceptors(new SerializeInterceptor(UserDto))
   findAllUsers(@Query() email: string) {
     return this.usersService.find(email);
   }

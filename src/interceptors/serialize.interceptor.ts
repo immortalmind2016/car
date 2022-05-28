@@ -10,6 +10,7 @@ import { plainToClass } from 'class-transformer';
 import { UserDto } from 'src/users/dtos/user.dto';
 
 export class SerializeInterceptor implements NestInterceptor {
+  constructor(public dto: any) {}
   intercept(
     context: ExecutionContext,
     next: CallHandler<any>,
@@ -18,7 +19,7 @@ export class SerializeInterceptor implements NestInterceptor {
     return next.handle().pipe(
       map((data: any) => {
         //data is user entity
-        return plainToClass(UserDto, data, {
+        return plainToClass(this.dto, data, {
           excludeExtraneousValues: true,
         });
       }),
