@@ -22,6 +22,7 @@ import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserDto } from './dtos/user.dto';
 import { UsersService } from './users.service';
 
+@Serialize(UserDto)
 @Controller('auth')
 export class UsersController {
   constructor(private usersService: UsersService) {}
@@ -37,9 +38,7 @@ export class UsersController {
     }
     return user;
   }
-  @Get('/:id')
-  @Serialize(UserDto)
-  findAllUsers(@Query() email: string) {
+  @Get('/:id') findAllUsers(@Query() email: string) {
     return this.usersService.find(email);
   }
   @Delete('/:id')
