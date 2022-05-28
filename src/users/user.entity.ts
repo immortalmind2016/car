@@ -1,4 +1,3 @@
-import { Exclude } from 'class-transformer';
 import {
   PrimaryGeneratedColumn,
   Column,
@@ -14,9 +13,7 @@ export class User {
   @Column()
   email: string;
 
-  //When you turn it into plain object and then into json just exclude the password
   @Column()
-  @Exclude()
   password: string;
 
   @AfterInsert()
