@@ -11,10 +11,13 @@ export class UsersService {
     return this.repo.save(user);
   }
   findOne(id: number) {
+    if (!id) {
+      return null;
+    }
     return this.repo.findOne({ where: { id } });
   }
   find(email: string) {
-    return this.repo.findOne({ where: { email } });
+    return this.repo.find({ where: { email } });
   }
   async update(
     id: number,

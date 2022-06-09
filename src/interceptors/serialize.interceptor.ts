@@ -7,7 +7,6 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
-import { UserDto } from 'src/users/dtos/user.dto';
 
 //Interface for any class
 interface ClassConstructor {
@@ -22,7 +21,6 @@ export class SerializeInterceptor implements NestInterceptor {
     context: ExecutionContext,
     next: CallHandler<any>,
   ): Observable<any> | Promise<Observable<any>> {
-    console.log(context);
     return next.handle().pipe(
       map((data: any) => {
         //data is user entity
