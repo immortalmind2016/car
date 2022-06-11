@@ -16,6 +16,7 @@ export class User {
   @Column()
   password: string;
 
+  //HOOKS
   @AfterInsert()
   logInsert() {
     console.log('Inserted User with id', this.id);
